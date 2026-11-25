@@ -7,7 +7,7 @@ use ml_dsa::{
 use std::{fs, path::PathBuf};
 
 #[derive(Parser)]
-#[command(name = "ml-dsa-65-pq-sign", about = "Minimal ML-DSA-65 signing CLI")]
+#[command(name = "ml-dsa-87-pq-sign", about = "Minimal ML-DSA-87 signing CLI")]
 struct Cli {
     #[command(subcommand)]
     command: Command,

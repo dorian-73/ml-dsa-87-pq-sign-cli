@@ -249,6 +249,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "ml-dsa-87-pq-sign"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "ml-dsa",
+]
+
+[[package]]
 name = "module-lattice"
 version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -313,15 +322,6 @@ name = "rand_core"
 version = "0.10.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "63b8176103e19a2643978565ca18b50549f6101881c443590420e4dc998a3c69"
-
-[[package]]
-name = "rust-pq-sign"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "clap",
- "ml-dsa",
-]
 
 [[package]]
 name = "shake"
