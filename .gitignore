@@ -1,0 +1,6 @@
+/target
+
+public.key
+secret.seed
+message.sig
+test-doc.txt

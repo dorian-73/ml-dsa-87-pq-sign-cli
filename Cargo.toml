@@ -1,0 +1,9 @@
+[package]
+name = "rust-pq-sign"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.105"
+clap = { version = "4.6.10", features = ["derive"] }
+ml-dsa = "0.1.2"
