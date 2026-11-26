@@ -90,7 +90,7 @@ fn main() -> Result<()> {
             let public_bytes =
                 fs::read(&public).with_context(|| format!("reading '{}'", public.display()))?;
             let encoded_public = EncodedVerifyingKey::<MlDsa87>::try_from(public_bytes.as_slice())
-                .map_err(|_| anyhow!("invalid ML-DSA-65 public-key length"))?;
+                .map_err(|_| anyhow!("invalid ML-DSA-87 public-key length"))?;
             let verifying_key = VerifyingKey::<MlDsa87>::decode(&encoded_public);
 
             let message_bytes =

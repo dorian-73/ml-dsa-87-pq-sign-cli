@@ -2,6 +2,13 @@
 name = "ml-dsa-87-pq-sign"
 version = "0.1.0"
 edition = "2024"
+rust-version = "1.85"
+description = "A lightweight command-line tool for signing and verifying files with ML-DSA-87."
+license = "GPL-3.0-or-later"
+repository = "https://github.com/dorian-73/ml-dsa-87-pq-sign-cli"
+readme = "README.md"
+keywords = ["ml-dsa", "post-quantum", "cryptography", "digital-signature", "cli"]
+categories = ["command-line-utilities", "cryptography"]
 
 [dependencies]
 anyhow = "1.0.105"
