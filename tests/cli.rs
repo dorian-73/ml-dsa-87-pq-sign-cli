@@ -1,7 +1,7 @@
 use std::{
     fs,
     path::PathBuf,
-    process::{Command, Output},
+    process::Command,
     sync::atomic::{AtomicU64, Ordering},
     time::{SystemTime, UNIX_EPOCH},
 };
@@ -17,7 +17,10 @@ impl TestDir {
             .expect("system clock is before UNIX epoch")
             .as_nanos();
         let id = NEXT_TEST_ID.fetch_add(1, Ordering::Relaxed);
-        let path = std::env::temp_dir().join(format!("ml-dsa-cli-test-{}-{nonce}-{id}", std::process::id()));
+        let path = std::env::temp_dir().join(format!(
+            "ml-dsa-cli-test-{}-{nonce}-{id}",
+            std::process::id()
+        ));
         fs::create_dir(&path).expect("create test directory");
         Self(path)
     }
@@ -27,13 +30,6 @@ impl Drop for TestDir {
     fn drop(&mut self) {
         let _ = fs::remove_dir_all(&self.0);
     }
-}
-
-fn run(args: &[&str]) -> Output {
-    Command::new(env!("CARGO_BIN_EXE_ml-dsa-87-pq-sign"))
-        .args(args)
-        .output()
-        .expect("run CLI")
 }
 
 #[test]
@@ -54,7 +50,11 @@ fn generate_sign_and_verify_round_trip() {
         ])
         .output()
         .expect("generate keypair");
-    assert!(generated.status.success(), "{}", String::from_utf8_lossy(&generated.stderr));
+    assert!(
+        generated.status.success(),
+        "{}",
+        String::from_utf8_lossy(&generated.stderr)
+    );
     assert_eq!(fs::metadata(&secret).unwrap().len(), 32);
     assert!(fs::metadata(&public).unwrap().len() > 0);
 
@@ -71,7 +71,11 @@ fn generate_sign_and_verify_round_trip() {
         ])
         .output()
         .expect("sign message");
-    assert!(signed.status.success(), "{}", String::from_utf8_lossy(&signed.stderr));
+    assert!(
+        signed.status.success(),
+        "{}",
+        String::from_utf8_lossy(&signed.stderr)
+    );
     assert!(fs::metadata(&signature).unwrap().len() > 0);
 
     let verified = Command::new(env!("CARGO_BIN_EXE_ml-dsa-87-pq-sign"))
@@ -86,7 +90,11 @@ fn generate_sign_and_verify_round_trip() {
         ])
         .output()
         .expect("verify signature");
-    assert!(verified.status.success(), "{}", String::from_utf8_lossy(&verified.stderr));
+    assert!(
+        verified.status.success(),
+        "{}",
+        String::from_utf8_lossy(&verified.stderr)
+    );
     assert!(String::from_utf8_lossy(&verified.stdout).contains("Signature is valid."));
 
     fs::write(&message, b"altered message").unwrap();
